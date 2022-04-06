@@ -6,10 +6,17 @@ import Profile from "./Pages/Profile/Profile";
 import Archieve from "./Pages/Archieve/Archieve";
 import Label from "./Pages/Labels/Labels";
 import Home from "./Pages/Home/Home";
-
+import Signup from "./Pages/Auth/Signup";
+import Login from "./Pages/Auth/Login";
+import { Link } from "react-router-dom";
 function App() {
   return (
     <div className="App">
+      <Link to="/">Home</Link>||
+      <Link to="/label">lable</Link>||
+      <Link to="/archieve">archieve</Link>||
+      <Link to="/trash">trash</Link>||
+      <Link to="/profile">profile</Link>||
       <Routes>
         <Route path="/" element={<Home />}>
           Home
@@ -24,6 +31,12 @@ function App() {
           Trash
         </Route>
         <Route path="/profile" element={<Profile />}>
+          Profile
+        </Route>
+        <Route path="/signup" element={<Signup />}>
+          Profile
+        </Route>
+        <Route path="/login" element={<Login />}>
           Profile
         </Route>
       </Routes>
