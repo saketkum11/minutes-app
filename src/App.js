@@ -8,16 +8,10 @@ import Label from "./Pages/Labels/Labels";
 import Home from "./Pages/Home/Home";
 import Signup from "./Pages/Auth/Signup";
 import Login from "./Pages/Auth/Login";
-import { Link } from "react-router-dom";
 import Notes from "./Pages/Notes/Notes";
 function App() {
   return (
     <div className="App">
-      <Link to="/">Home</Link>||
-      <Link to="/label">lable</Link>||
-      <Link to="/archieve">archieve</Link>||
-      <Link to="/trash">trash</Link>||
-      <Link to="/profile">profile</Link>||
       <Routes>
         <Route path="/" element={<Home />}>
           Home
