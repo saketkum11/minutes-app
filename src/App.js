@@ -1,14 +1,17 @@
 import "./App.css";
 import logo from "./logo.png";
 import { Routes, Route } from "react-router-dom";
-import Trash from "./Pages/Trash/Trash";
-import Profile from "./Pages/Profile/Profile";
-import Archieve from "./Pages/Archieve/Archieve";
-import Label from "./Pages/Labels/Labels";
-import Home from "./Pages/Home/Home";
-import Signup from "./Pages/Auth/Signup";
-import Login from "./Pages/Auth/Login";
-import Notes from "./Pages/Notes/Notes";
+import {
+  Trash,
+  Profile,
+  Archieve,
+  Label,
+  Home,
+  Signup,
+  Login,
+  Notes,
+} from "./Pages";
+
 function App() {
   return (
     <div className="App">
