@@ -1,10 +1,15 @@
 import React from "react";
+import { useAuth } from "../../Context/Auth/Auth";
 
 function Signup() {
+  const { signupHandler } = useAuth();
   return (
     <>
       <div className=" m-auto wt-30 flex flex-column justify-even">
         <form
+          onSubmit={(e) => {
+            e.preventDefault();
+          }}
           action=""
           className="bg-black-1 text-color-9 justify-even flex flex-column  m-t-9 pd-11"
         >
@@ -53,7 +58,7 @@ function Signup() {
             placeholder="eg: asjh$dhdf12"
           />
           <button class="bg-purple-7 m-y-8 rounded-xs border-none outline-none text-s cursor text-color-0 pd-3 text-light">
-            Login
+            Sign Up
           </button>
           <a
             href="#"
