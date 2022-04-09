@@ -1,14 +1,23 @@
-import React from "react";
-import { useAuth } from "../../Context/Auth/Auth";
+import React, { useState } from "react";
+import { useAuth } from "../../Context/Auth/Auth-Context";
 
 function Signup() {
   const { signupHandler } = useAuth();
+  const [data, setData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+  });
+
   return (
     <>
       <div className=" m-auto wt-30 flex flex-column justify-even">
         <form
           onSubmit={(e) => {
             e.preventDefault();
+            signupHandler(data);
+            console.log(data);
           }}
           action=""
           className="bg-black-1 text-color-9 justify-even flex flex-column  m-t-9 pd-11"
@@ -20,8 +29,9 @@ function Signup() {
             FirstName
           </label>
           <input
-            type="email"
-            class=" pd-4   text-s rounded-xs "
+            type="text"
+            class=" pd-4 text-s rounded-xs "
+            onChange={(e) => setData({ ...data, firstName: e.target.value })}
             placeholder="eg: saket"
           />
           <label
@@ -31,7 +41,8 @@ function Signup() {
             LastName
           </label>
           <input
-            type="email"
+            type="text"
+            onChange={(e) => setData({ ...data, lastName: e.target.value })}
             class="pd-4 text-s rounded-xs outline-none "
             placeholder="eg: kumar"
           />
@@ -39,10 +50,11 @@ function Signup() {
             htmlFor=""
             className="flex items-start text-xm pd-y-5 pd-x-3 text-sm  text-light"
           >
-            LastName
+            Email
           </label>
           <input
             type="email"
+            onChange={(e) => setData({ ...data, email: e.target.value })}
             class="pd-4 text-s rounded-xs outline-none "
             placeholder="eg: kumarsaket@gmail.com"
           />
@@ -54,10 +66,14 @@ function Signup() {
           </label>
           <input
             type="password"
+            onChange={(e) => setData({ ...data, password: e.target.value })}
             class="pd-4 text-s rounded-xs outline-none "
             placeholder="eg: asjh$dhdf12"
           />
-          <button class="bg-purple-7 m-y-8 rounded-xs border-none outline-none text-s cursor text-color-0 pd-3 text-light">
+          <button
+            type="submit"
+            class="bg-purple-7 m-y-8 rounded-xs border-none outline-none text-s cursor text-color-0 pd-3 text-light"
+          >
             Sign Up
           </button>
           <a

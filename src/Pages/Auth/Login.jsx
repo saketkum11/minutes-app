@@ -1,5 +1,5 @@
 import React from "react";
-import { useAuth } from "../../Context/Auth/Auth";
+import { useAuth } from "../../Context/Auth/Auth-Context";
 
 function Login() {
   const { auth } = useAuth();
@@ -18,7 +18,7 @@ function Login() {
           </label>
           <input
             type="email"
-            class=" pd-4   text-s rounded-xs "
+            className=" pd-4   text-s rounded-xs "
             placeholder="Email Id"
           />
 
@@ -31,19 +31,22 @@ function Login() {
 
           <input
             type="password"
-            class="pd-4 text-s rounded-xs outline-none "
+            className="pd-4 text-s rounded-xs outline-none "
             placeholder="Password"
           />
-          <button class="bg-purple-7 m-y-8 rounded-xs border-none outline-none text-s cursor text-color-0 pd-3 text-light">
+          <button className="bg-purple-7 m-y-8 rounded-xs border-none outline-none text-s cursor text-color-0 pd-3 text-light">
             Login
           </button>
 
-          <button class="bg-black-0 rounded-xs outline-none pd-2 cursor">
+          <button className="bg-black-0 rounded-xs outline-none pd-2 cursor">
             Login as Guest{" "}
           </button>
         </form>
         <footer className="bg-black-4 ">
-          <a href="" class="text-dec rounded-xs text-color-0  pd-x-3 pd-y-2">
+          <a
+            href=""
+            className="text-dec rounded-xs text-color-0  pd-x-3 pd-y-2"
+          >
             Create account
           </a>
         </footer>
