@@ -1,6 +1,6 @@
 import "./App.css";
 import logo from "./logo.png";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, NavLink } from "react-router-dom";
 import Trash from "./Pages/Trash/Trash";
 import Profile from "./Pages/Profile/Profile";
 import Archieve from "./Pages/Archieve/Archieve";
@@ -13,6 +13,93 @@ import Mockman from "mockman-js";
 function App() {
   return (
     <div className="App">
+      <NavLink
+        style={({ isActive }) => {
+          return {
+            color: isActive ? "red" : "",
+          };
+        }}
+        to="/"
+      >
+        Home
+      </NavLink>
+      ||
+      <NavLink
+        style={({ isActive }) => {
+          return {
+            color: isActive ? "red" : "",
+          };
+        }}
+        to="/label"
+      >
+        Label
+      </NavLink>
+      ||
+      <NavLink
+        style={({ isActive }) => {
+          return {
+            color: isActive ? "red" : "",
+          };
+        }}
+        to="/archieve"
+      >
+        Archieve
+      </NavLink>
+      ||
+      <NavLink
+        style={({ isActive }) => {
+          return {
+            color: isActive ? "red" : "",
+          };
+        }}
+        to="/trash"
+      >
+        Trash
+      </NavLink>
+      ||
+      <NavLink
+        style={({ isActive }) => {
+          return {
+            color: isActive ? "red" : "",
+          };
+        }}
+        to="/profile"
+      >
+        Profile
+      </NavLink>
+      ||
+      <NavLink
+        style={({ isActive }) => {
+          return {
+            color: isActive ? "red" : "",
+          };
+        }}
+        to="/signup"
+      >
+        Signup
+      </NavLink>
+      ||
+      <NavLink
+        style={({ isActive }) => {
+          return {
+            color: isActive ? "red" : "",
+          };
+        }}
+        to="/login"
+      >
+        Login
+      </NavLink>
+      ||
+      <NavLink
+        style={({ isActive }) => {
+          return {
+            color: isActive ? "red" : "",
+          };
+        }}
+        to="/notes"
+      >
+        Create Notes
+      </NavLink>
       <Routes>
         <Route path="/" element={<Home />}>
           Home
