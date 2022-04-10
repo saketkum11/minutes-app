@@ -9,7 +9,7 @@ import Home from "./Pages/Home/Home";
 import Signup from "./Pages/Auth/Signup";
 import Login from "./Pages/Auth/Login";
 import Notes from "./Pages/Notes/Notes";
-import MockmanEs from "mockman-js";
+import Mockman from "mockman-js";
 function App() {
   return (
     <div className="App">
@@ -38,9 +38,7 @@ function App() {
         <Route path="/notes" element={<Notes />}>
           Notes
         </Route>
-        <Route path="/mock" element={<MockmanEs />}>
-          MockBee
-        </Route>
+        <Route path="/mock" element={<Mockman />} />
       </Routes>
     </div>
   );

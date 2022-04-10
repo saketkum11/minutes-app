@@ -1,8 +1,8 @@
 import React, { useContext, createContext, useState } from "react";
 import axios from "axios";
 
-const AuthContext = createContext();
-const useAuth = () => useContext(AuthContext);
+const authContext = createContext();
+const useAuth = () => useContext(authContext);
 
 const AuthProvider = ({ children }) => {
   const [users, setUsers] = useState([]);
@@ -23,9 +23,9 @@ const AuthProvider = ({ children }) => {
     }
   };
   return (
-    <AuthContext.Provider value={{ signupHandler }}>
+    <authContext.Provider value={{ signupHandler }}>
       {children}
-    </AuthContext.Provider>
+    </authContext.Provider>
   );
 };
 
