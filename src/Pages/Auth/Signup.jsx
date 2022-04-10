@@ -17,7 +17,6 @@ function Signup() {
           onSubmit={(e) => {
             e.preventDefault();
             signupHandler(data);
-            console.log(data);
           }}
           action=""
           className="bg-black-1 text-color-9 justify-even flex flex-column  m-t-9 pd-11"
