@@ -5,6 +5,10 @@ const authContext = createContext();
 const useAuth = () => useContext(authContext);
 
 const AuthProvider = ({ children }) => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const loginHandler = () => {
+    setIsLoggedIn((login) => !login);
+  };
   const signupHandler = async ({ firstName, lastName, email, password }) => {
     try {
       const response = await axios.post(`/api/auth/signup`, {
@@ -23,7 +27,7 @@ const AuthProvider = ({ children }) => {
   };
 
   return (
-    <authContext.Provider value={{ signupHandler }}>
+    <authContext.Provider value={{ signupHandler, loginHandler }}>
       {children}
     </authContext.Provider>
   );

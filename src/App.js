@@ -10,6 +10,7 @@ import Signup from "./Pages/Auth/Signup";
 import Login from "./Pages/Auth/Login";
 import Notes from "./Pages/Notes/Notes";
 import Mockman from "mockman-js";
+import RequierAuth from "./Context/RequireAuth/RequireAuth";
 function App() {
   return (
     <div className="App">
@@ -101,30 +102,70 @@ function App() {
         Create Notes
       </NavLink>
       <Routes>
-        <Route path="/" element={<Home />}>
-          Home
-        </Route>
-        <Route path="/label" element={<Label />}>
-          Labels
-        </Route>
-        <Route path="/archieve" element={<Archieve />}>
-          Archieve
-        </Route>
-        <Route path="/trash" element={<Trash />}>
-          Trash
-        </Route>
-        <Route path="/profile" element={<Profile />}>
-          Profile
-        </Route>
-        <Route path="/signup" element={<Signup />}>
-          Profile
-        </Route>
-        <Route path="/login" element={<Login />}>
-          Profile
-        </Route>
-        <Route path="/notes" element={<Notes />}>
-          Notes
-        </Route>
+        <Route path="/" element={<Home />}></Route>
+        <Route
+          path="/label"
+          element={
+            <RequierAuth>
+              {" "}
+              <Label />
+            </RequierAuth>
+          }
+        />
+        <Route
+          path="/archieve"
+          element={
+            <RequierAuth>
+              {" "}
+              <Archieve />
+            </RequierAuth>
+          }
+        ></Route>
+        <Route
+          path="/trash"
+          element={
+            <RequierAuth>
+              {" "}
+              <Trash />
+            </RequierAuth>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <RequierAuth>
+              {" "}
+              <Profile />
+            </RequierAuth>
+          }
+        />
+        <Route
+          path="/signup"
+          element={
+            <RequierAuth>
+              {" "}
+              <Signup />
+            </RequierAuth>
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <RequierAuth>
+              {" "}
+              <Login />
+            </RequierAuth>
+          }
+        />
+        <Route
+          path="/notes"
+          element={
+            <RequierAuth>
+              {" "}
+              <Notes />
+            </RequierAuth>
+          }
+        ></Route>
         <Route path="/mock" element={<Mockman />} />
       </Routes>
     </div>
