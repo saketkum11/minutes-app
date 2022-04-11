@@ -112,60 +112,7 @@ function App() {
             </RequierAuth>
           }
         />
-        <Route
-          path="/archieve"
-          element={
-            <RequierAuth>
-              {" "}
-              <Archieve />
-            </RequierAuth>
-          }
-        ></Route>
-        <Route
-          path="/trash"
-          element={
-            <RequierAuth>
-              {" "}
-              <Trash />
-            </RequierAuth>
-          }
-        />
-        <Route
-          path="/profile"
-          element={
-            <RequierAuth>
-              {" "}
-              <Profile />
-            </RequierAuth>
-          }
-        />
-        <Route
-          path="/signup"
-          element={
-            <RequierAuth>
-              {" "}
-              <Signup />
-            </RequierAuth>
-          }
-        />
-        <Route
-          path="/login"
-          element={
-            <RequierAuth>
-              {" "}
-              <Login />
-            </RequierAuth>
-          }
-        />
-        <Route
-          path="/notes"
-          element={
-            <RequierAuth>
-              {" "}
-              <Notes />
-            </RequierAuth>
-          }
-        ></Route>
+
         <Route path="/mock" element={<Mockman />} />
       </Routes>
     </div>
