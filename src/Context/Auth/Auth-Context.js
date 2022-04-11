@@ -1,4 +1,4 @@
-import React, { useContext, createContext, useState } from "react";
+import React, { useContext, createContext, useState, useEffect } from "react";
 import axios from "axios";
 
 const authContext = createContext();
@@ -6,6 +6,12 @@ const useAuth = () => useContext(authContext);
 
 const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const tokenStorge = localStorage.getItem("token");
+
+  const isAuth = tokenStorge ? true : false;
+  useEffect(() => {
+    console.log(tokenStorge);
+  }, []);
 
   const loginTextHandler = () => {
     setIsLoggedIn((login) => !login);
@@ -26,14 +32,18 @@ const AuthProvider = ({ children }) => {
     }
   };
   const loginHandler = async ({ email, password }) => {
-    try {
-      const response = await axios.post("/api/auth/login", {
-        email: email,
-        password: password,
-      });
-      localStorage.setItem("token", response.data.encodedToken);
-    } catch (error) {
-      console.error(error);
+    if (tokenStorge === true) {
+      try {
+        const response = await axios.post("/api/auth/login", {
+          email: email,
+          password: password,
+        });
+        localStorage.setItem("token", response.data.encodedToken);
+      } catch (error) {
+        console.error(error);
+      }
+    } else {
+      console.error("error");
     }
   };
 
