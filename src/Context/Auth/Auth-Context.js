@@ -21,8 +21,6 @@ const AuthProvider = ({ children }) => {
       });
       // saving the encodedToken in the localStorage
       localStorage.setItem("token", response.data.encodedToken);
-
-      console.log(response);
     } catch (error) {
       console.error(error);
     }
@@ -34,7 +32,6 @@ const AuthProvider = ({ children }) => {
         password: password,
       });
       localStorage.setItem("token", response.data.encodedToken);
-      console.log("Login", response);
     } catch (error) {
       console.error(error);
     }
