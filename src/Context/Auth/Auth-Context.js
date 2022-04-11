@@ -9,9 +9,6 @@ const AuthProvider = ({ children }) => {
   const tokenStorge = localStorage.getItem("token");
 
   const isAuth = tokenStorge ? true : false;
-  useEffect(() => {
-    console.log(tokenStorge);
-  }, []);
 
   const loginTextHandler = () => {
     setIsLoggedIn((login) => !login);
@@ -32,7 +29,7 @@ const AuthProvider = ({ children }) => {
     }
   };
   const loginHandler = async ({ email, password }) => {
-    if (tokenStorge === true) {
+    if (tokenStorge) {
       try {
         const response = await axios.post("/api/auth/login", {
           email: email,
