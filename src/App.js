@@ -12,6 +12,7 @@ import Notes from "./Pages/Notes/Notes";
 import Mockman from "mockman-js";
 import RequierAuth from "./Context/RequireAuth/RequireAuth";
 import { useAuth } from "./Context/Auth/Auth-Context";
+import Landing from "./Pages/Landing/Landing";
 function App() {
   const { isLoggedIn, loginTextHandler } = useAuth();
   return (
@@ -22,7 +23,7 @@ function App() {
             color: isActive ? "red" : "",
           };
         }}
-        to="/"
+        to="/home"
       >
         Home
       </NavLink>
@@ -103,11 +104,30 @@ function App() {
       >
         Create Notes
       </NavLink>
+      ||
+      <NavLink
+        style={({ isActive }) => {
+          return {
+            color: isActive ? "red" : "",
+          };
+        }}
+        to="/"
+      >
+        {" "}
+        Landing
+      </NavLink>
       <button onClick={loginTextHandler}>
         {isLoggedIn ? "logout" : "login"}
       </button>
       <Routes>
-        <Route path="/" element={<Home />}></Route>
+        <Route
+          path="/home"
+          element={
+            <RequierAuth>
+              <Home />
+            </RequierAuth>
+          }
+        />
         <Route
           path="/label"
           element={
@@ -117,6 +137,7 @@ function App() {
             </RequierAuth>
           }
         />
+
         <Route
           path="archieve"
           element={
@@ -149,6 +170,8 @@ function App() {
             </RequierAuth>
           }
         />
+
+        <Route path="/" element={<Landing />} />
         <Route path="login" element={<Login />} />
         <Route path="signup" element={<Signup />} />
         <Route path="/mock" element={<Mockman />} />
