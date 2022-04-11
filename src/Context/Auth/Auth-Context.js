@@ -5,7 +5,7 @@ const authContext = createContext();
 const useAuth = () => useContext(authContext);
 
 const AuthProvider = ({ children }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false); //////
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const loginTextHandler = () => {
     setIsLoggedIn((login) => !login);
