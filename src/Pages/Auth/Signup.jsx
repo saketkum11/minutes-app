@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../Context/Auth/Auth-Context";
 
 function Signup() {
+  const navigate = useNavigate();
   const { signupHandler } = useAuth();
   const [data, setData] = useState({
     firstName: "",
@@ -17,6 +19,7 @@ function Signup() {
           onSubmit={(e) => {
             e.preventDefault();
             signupHandler(data);
+            navigate("/login");
           }}
           action=""
           className="bg-black-1 text-color-9 justify-even flex flex-column  m-t-9 pd-11"
@@ -29,7 +32,7 @@ function Signup() {
           </label>
           <input
             type="text"
-            class=" pd-4 text-s rounded-xs "
+            className=" pd-4 text-s rounded-xs "
             onChange={(e) => setData({ ...data, firstName: e.target.value })}
             placeholder="eg: saket"
           />
@@ -42,7 +45,7 @@ function Signup() {
           <input
             type="text"
             onChange={(e) => setData({ ...data, lastName: e.target.value })}
-            class="pd-4 text-s rounded-xs outline-none "
+            className="pd-4 text-s rounded-xs outline-none "
             placeholder="eg: kumar"
           />
           <label
@@ -54,7 +57,7 @@ function Signup() {
           <input
             type="email"
             onChange={(e) => setData({ ...data, email: e.target.value })}
-            class="pd-4 text-s rounded-xs outline-none "
+            className="pd-4 text-s rounded-xs outline-none "
             placeholder="eg: kumarsaket@gmail.com"
           />
           <label
@@ -66,18 +69,18 @@ function Signup() {
           <input
             type="password"
             onChange={(e) => setData({ ...data, password: e.target.value })}
-            class="pd-4 text-s rounded-xs outline-none "
+            className="pd-4 text-s rounded-xs outline-none "
             placeholder="eg: asjh$dhdf12"
           />
           <button
             type="submit"
-            class="bg-purple-7 m-y-8 rounded-xs border-none outline-none text-s cursor text-color-0 pd-3 text-light"
+            className="bg-purple-7 m-y-8 rounded-xs border-none outline-none text-s cursor text-color-0 pd-3 text-light"
           >
             Sign Up
           </button>
           <a
             href="#"
-            class="text-dec rounded-s text-color-9 bg-black-2 pd-x-3 pd-y-2"
+            className="text-dec rounded-s text-color-9 bg-black-2 pd-x-3 pd-y-2"
           >
             Already have account
           </a>
