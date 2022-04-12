@@ -24,6 +24,7 @@ const AuthProvider = ({ children }) => {
       });
       // saving the encodedToken in the localStorage
       localStorage.setItem("token", response.data.encodedToken);
+      console.log("response", response);
     } catch (error) {
       console.error(error);
     }
@@ -36,6 +37,7 @@ const AuthProvider = ({ children }) => {
           password: password,
         });
         localStorage.setItem("token", response.data.encodedToken);
+        console.log("response", response);
       } catch (error) {
         console.error(error);
       }
@@ -46,7 +48,13 @@ const AuthProvider = ({ children }) => {
 
   return (
     <authContext.Provider
-      value={{ signupHandler, loginHandler, loginTextHandler, isLoggedIn }}
+      value={{
+        signupHandler,
+        loginHandler,
+        loginTextHandler,
+        isLoggedIn,
+        tokenStorge,
+      }}
     >
       {children}
     </authContext.Provider>
