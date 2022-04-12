@@ -1,7 +1,7 @@
 import { Navigate, useLocation } from "react-router-dom";
 import { useAuth } from "../Auth/Auth-Context";
 
-function RequierAuth({ children }) {
+function RequireAuth({ children }) {
   const { isLoggedIn } = useAuth();
   const location = useLocation();
   return isLoggedIn ? (
@@ -10,4 +10,4 @@ function RequierAuth({ children }) {
     <Navigate to="/login" state={{ from: location }} replace />
   );
 }
-export default RequierAuth;
+export default RequireAuth;

@@ -10,7 +10,7 @@ import Signup from "./Pages/Auth/Signup";
 import Login from "./Pages/Auth/Login";
 import Notes from "./Pages/Notes/Notes";
 import Mockman from "mockman-js";
-import RequierAuth from "./Context/RequireAuth/RequireAuth";
+import RequireAuth from "./Context/RequireAuth/RequireAuth";
 import { useAuth } from "./Context/Auth/Auth-Context";
 import Landing from "./Pages/Landing/Landing";
 function App() {
@@ -123,51 +123,51 @@ function App() {
         <Route
           path="/home"
           element={
-            <RequierAuth>
+            <RequireAuth>
               <Home />
-            </RequierAuth>
+            </RequireAuth>
           }
         />
         <Route
           path="/label"
           element={
-            <RequierAuth>
+            <RequireAuth>
               {" "}
               <Label />
-            </RequierAuth>
+            </RequireAuth>
           }
         />
 
         <Route
           path="archieve"
           element={
-            <RequierAuth>
+            <RequireAuth>
               <Archieve />
-            </RequierAuth>
+            </RequireAuth>
           }
         />
         <Route
           path="notes"
           element={
-            <RequierAuth>
+            <RequireAuth>
               <Notes />
-            </RequierAuth>
+            </RequireAuth>
           }
         />
         <Route
           path="trash"
           element={
-            <RequierAuth>
+            <RequireAuth>
               <Trash />
-            </RequierAuth>
+            </RequireAuth>
           }
         />
         <Route
           path="profile"
           element={
-            <RequierAuth>
+            <RequireAuth>
               <Profile />
-            </RequierAuth>
+            </RequireAuth>
           }
         />
 
