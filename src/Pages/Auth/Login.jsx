@@ -10,9 +10,7 @@ function Login() {
     email: "",
     password: "",
   });
-  useEffect(() => {
-    console.log(location.state?.from?.pathname);
-  }, []);
+
   return (
     <>
       <div className=" m-auto wt-30 flex flex-column justify-even">
