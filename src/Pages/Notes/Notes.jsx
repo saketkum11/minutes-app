@@ -1,9 +1,10 @@
 import React from "react";
+import Navbar from "../../Component/Sidenav/Navbar";
 
 function Notes() {
   return (
     <>
-      <h1>This is Notes Page.</h1>
+      <Navbar></Navbar>
     </>
   );
 }

@@ -11,114 +11,11 @@ import Login from "./Pages/Auth/Login";
 import Notes from "./Pages/Notes/Notes";
 import Mockman from "mockman-js";
 import RequireAuth from "./Context/RequireAuth/RequireAuth";
-import { useAuth } from "./Context/Auth/Auth-Context";
+
 import Landing from "./Pages/Landing/Landing";
 function App() {
-  const { isLoggedIn, loginTextHandler } = useAuth();
   return (
     <div className="App">
-      <NavLink
-        style={({ isActive }) => {
-          return {
-            color: isActive ? "red" : "",
-          };
-        }}
-        to="/home"
-      >
-        Home
-      </NavLink>
-      ||
-      <NavLink
-        style={({ isActive }) => {
-          return {
-            color: isActive ? "red" : "",
-          };
-        }}
-        to="/label"
-      >
-        Label
-      </NavLink>
-      ||
-      <NavLink
-        style={({ isActive }) => {
-          return {
-            color: isActive ? "red" : "",
-          };
-        }}
-        to="/archieve"
-      >
-        Archieve
-      </NavLink>
-      ||
-      <NavLink
-        style={({ isActive }) => {
-          return {
-            color: isActive ? "red" : "",
-          };
-        }}
-        to="/trash"
-      >
-        Trash
-      </NavLink>
-      ||
-      <NavLink
-        style={({ isActive }) => {
-          return {
-            color: isActive ? "red" : "",
-          };
-        }}
-        to="/profile"
-      >
-        Profile
-      </NavLink>
-      ||
-      <NavLink
-        style={({ isActive }) => {
-          return {
-            color: isActive ? "red" : "",
-          };
-        }}
-        to="/signup"
-      >
-        Signup
-      </NavLink>
-      ||
-      <NavLink
-        style={({ isActive }) => {
-          return {
-            color: isActive ? "red" : "",
-          };
-        }}
-        to="/login"
-      >
-        Login
-      </NavLink>
-      ||
-      <NavLink
-        style={({ isActive }) => {
-          return {
-            color: isActive ? "red" : "",
-          };
-        }}
-        to="/notes"
-      >
-        Create Notes
-      </NavLink>
-      ||
-      <NavLink
-        style={({ isActive }) => {
-          return {
-            color: isActive ? "red" : "",
-          };
-        }}
-        to="/"
-      >
-        {" "}
-        Landing
-      </NavLink>
-      <button onClick={loginTextHandler}>
-        {isLoggedIn ? "logout" : "login"}
-      </button>
       <Routes>
         <Route
           path="/home"

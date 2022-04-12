@@ -1,9 +1,10 @@
 import React from "react";
+import Navbar from "../../Component/Sidenav/Navbar";
 
 function Archieve() {
   return (
     <>
-      <h1>This is Archieve Page.</h1>
+      <Navbar></Navbar>
     </>
   );
 }

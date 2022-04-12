@@ -1,9 +1,10 @@
 import React from "react";
+import Navbar from "../../Component/Sidenav/Navbar";
 
 function Trash() {
   return (
     <>
-      <h1>This is Trash Page.</h1>
+      <Navbar></Navbar>
     </>
   );
 }

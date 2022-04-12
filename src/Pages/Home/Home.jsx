@@ -1,9 +1,10 @@
 import React from "react";
+import Navbar from "../../Component/Sidenav/Navbar";
 
 function Home() {
   return (
     <>
-      <h1>This is Home Page.</h1>
+      <Navbar></Navbar>
     </>
   );
 }
