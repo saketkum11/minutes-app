@@ -5,7 +5,7 @@ import { useAuth } from "../../Context/Auth/Auth-Context";
 function Navbar() {
   const { isLoggedIn, loginTextHandler } = useAuth();
   return (
-    <div className="wt-20 bg-black-0 ">
+    <div className=" bg-black-0 ">
       <div className=" flex flex-column wt-100 pd-x-11 pd-y-5">
         <section className="flex flex-column items-start text-color-9  pd-y-5">
           <img src="./assests/Minutes.jpg" alt="" />
