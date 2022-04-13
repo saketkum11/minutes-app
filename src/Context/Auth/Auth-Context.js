@@ -1,14 +1,16 @@
 import React, { useContext, createContext, useState, useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const authContext = createContext();
 const useAuth = () => useContext(authContext);
 
 const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const tokenStorge = localStorage.getItem("token");
+  const tokenStorage = localStorage.getItem("token");
 
-  const isAuth = tokenStorge ? true : false;
+  const isAuth = tokenStorage ? true : false;
+  const navigate = useNavigate();
 
   const loginTextHandler = () => {
     setIsLoggedIn((login) => !login);
@@ -24,25 +26,20 @@ const AuthProvider = ({ children }) => {
       });
       // saving the encodedToken in the localStorage
       localStorage.setItem("token", response.data.encodedToken);
-      console.log("response", response);
     } catch (error) {
       console.error(error);
     }
   };
   const loginHandler = async ({ email, password }) => {
-    if (tokenStorge) {
-      try {
-        const response = await axios.post("/api/auth/login", {
-          email: email,
-          password: password,
-        });
-        localStorage.setItem("token", response.data.encodedToken);
-        console.log("response", response);
-      } catch (error) {
-        console.error(error);
-      }
-    } else {
-      console.error("error");
+    try {
+      const response = await axios.post("/api/auth/login", {
+        email: email,
+        password: password,
+      });
+      localStorage.setItem("token", response.data.encodedToken);
+      navigate("/notes");
+    } catch (error) {
+      console.error(error);
     }
   };
 
@@ -53,7 +50,8 @@ const AuthProvider = ({ children }) => {
         loginHandler,
         loginTextHandler,
         isLoggedIn,
-        tokenStorge,
+        tokenStorage,
+        isAuth,
       }}
     >
       {children}
