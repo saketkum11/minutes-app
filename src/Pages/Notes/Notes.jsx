@@ -2,10 +2,9 @@ import React from "react";
 import CardNote from "../../Component/Card-note/CardNote";
 import NotesPanel from "../../Component/Note-Panel/notesPanel";
 import Navbar from "../../Component/Sidenav/Navbar";
-import { useNote } from "../../Context/Note/note-context";
+
 import "../../Style/style.css";
 function Notes() {
-  const { userNotes } = useNote();
   return (
     <>
       <div className="container-grid">
@@ -19,14 +18,7 @@ function Notes() {
             />
           </div>
           <CardNote></CardNote>
-          {userNotes &&
-            useNote.map((notes) => {
-              return (
-                <>
-                  <NotesPanel key={notes.id} note={notes}></NotesPanel>
-                </>
-              );
-            })}
+          <NotesPanel></NotesPanel>
         </aside>
       </div>
     </>

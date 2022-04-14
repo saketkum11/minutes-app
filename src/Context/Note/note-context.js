@@ -23,7 +23,7 @@ const NoteProvider = ({ children }) => {
 
   const initialNotes = {
     _id: uuid(),
-    label: [],
+    tags: [],
     noteTitle: "",
     noteText: "",
     color: "",
@@ -37,7 +37,6 @@ const NoteProvider = ({ children }) => {
         },
       });
       setUserNotes(response.data.notes);
-      console.log("response from notes context", response);
     } catch (error) {
       console.error(error);
     }
@@ -64,6 +63,20 @@ const NoteProvider = ({ children }) => {
       console.error(error);
     }
   };
+  const deleteNotes = async (note, id) => {
+    try {
+      const response = await axios.delete(`/api/notes/${note._id}`, {
+        headers: {
+          authorization: tokenStorage,
+        },
+      });
+      setUserNotes(response.data.notes);
+      console.log("response from create notes", response.data.notes);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  const moveToTrash = () => {};
 
   console.log("userstate", userNotes);
 
@@ -76,6 +89,8 @@ const NoteProvider = ({ children }) => {
         setNoteFooter,
         noteDispatch,
         noteState,
+        userNotes,
+        deleteNotes,
       }}
     >
       {children}

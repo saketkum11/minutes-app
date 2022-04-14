@@ -14,7 +14,7 @@ function noteReducer(state, { type, payload }) {
     case SET_LABEL:
       return {
         ...state,
-        label: [...state.label, payload],
+        tags: [...state.tags, payload],
       };
     case COLOR:
       return {
