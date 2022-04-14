@@ -1,29 +1,51 @@
 import { useNote } from "../../Context/Note/note-context";
-import { FONT } from "../../Variable/variable";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
+import { useState } from "react";
+import { SET_TEXT } from "../../Variable/variable";
 function Typographycal() {
   const { noteDispatch, noteState } = useNote();
-  const typoGraph = [
+
+  const modules = {
+    toolbar: [
+      [{ header: "1" }, { header: "2" }, { font: [] }],
+      [{ size: [] }],
+      ["bold", "italic", "underline", "strike", "blockquote"],
+      [
+        { list: "ordered" },
+        { list: "bullet" },
+        { indent: "-1" },
+        { indent: "+1" },
+      ],
+
+      ["clean"],
+    ],
+  };
+  const formats = [
+    "header",
+    "font",
+    "size",
     "bold",
     "italic",
     "underline",
-    "quote-right",
-    "text-slash",
+    "strike",
+    "blockquote",
+    "list",
+    "bullet",
+    "indent",
     "link",
   ];
   return (
     <>
-      <div className="flex items-start justify-around m-y-3">
-        {typoGraph.map((fontType) => {
-          <button
-            onClick={() => {
-              noteDispatch({ type: FontFace, payload: fontType });
-            }}
-            className="text-color-5 cursor rounded-full border-none  outline-none pd-x-3 pd-y-2"
-          >
-            <i className={`fa-solid fa-${fontType}`}></i>
-          </button>;
-        })}
-      </div>
+      <ReactQuill
+        theme="snow"
+        onChange={(value) => {
+          noteDispatch({ type: SET_TEXT, payload: `${value}` });
+        }}
+        modules={modules}
+        formats={formats}
+        placeholder="write note"
+      />
     </>
   );
 }

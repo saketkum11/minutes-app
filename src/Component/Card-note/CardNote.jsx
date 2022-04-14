@@ -1,10 +1,10 @@
 import { useNote } from "../../Context/Note/note-context";
 import { useState } from "react";
-import { SET_TITLE, SET_TEXT, SET_LABEL, COLOR } from "../../Variable/variable";
+import { SET_TITLE, SET_LABEL, COLOR } from "../../Variable/variable";
 import "../../Style/cardNote.css";
 import Typographycal from "../Typographcal/Typographycal";
 function CardNote() {
-  const { getNotes, noteFooter, setNoteFooter, noteDispatch, noteState } =
+  const { createNotes, noteFooter, setNoteFooter, noteDispatch, noteState } =
     useNote();
 
   const colors = [
@@ -38,16 +38,6 @@ function CardNote() {
           </div>
           <Typographycal></Typographycal>
 
-          <div className="m-y-1 flex items-start pd-5">
-            <input
-              onChange={(e) => {
-                noteDispatch({ type: SET_TEXT, payload: e.target.value });
-              }}
-              type="text"
-              className="outline-none border-none text-m  pd-3"
-              placeholder="Write Your note"
-            />
-          </div>
           <div className="flex justify-even  items-start m-y-3 ">
             <button
               onClick={() =>
@@ -72,7 +62,7 @@ function CardNote() {
 
             <button
               onClick={() => {
-                getNotes();
+                createNotes(noteState);
               }}
               className="bg-purple-7 rounded-s cursor border-none  outline-none text-color-0 pd-x-6 pd-y-3"
             >

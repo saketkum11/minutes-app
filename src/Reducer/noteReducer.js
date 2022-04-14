@@ -21,11 +21,7 @@ function noteReducer(state, { type, payload }) {
         ...state,
         color: payload,
       };
-    case FONT:
-      return {
-        ...state,
-        color: payload,
-      };
+
     default:
       return { ...state };
   }

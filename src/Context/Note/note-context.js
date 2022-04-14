@@ -8,6 +8,8 @@ import React, {
 import { useAuth } from "../Auth/Auth-Context";
 import axios from "axios";
 import noteReducer from "../../Reducer/noteReducer";
+import { v4 as uuid } from "uuid";
+
 const noteContext = createContext();
 const useNote = () => useContext(noteContext);
 
@@ -20,6 +22,7 @@ const NoteProvider = ({ children }) => {
   });
 
   const initialNotes = {
+    _id: uuid(),
     label: [],
     noteTitle: "",
     noteText: "",
@@ -44,11 +47,11 @@ const NoteProvider = ({ children }) => {
     getNotes();
   }, []);
 
-  const createNotes = async ({ notes }) => {
+  const createNotes = async (note) => {
     try {
       const response = await axios.post(
         "/api/notes",
-        { notes },
+        { note },
         {
           headers: {
             authorization: tokenStorage,
