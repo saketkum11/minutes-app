@@ -1,4 +1,11 @@
-import { SET_TITLE, SET_TEXT, SET_LABEL, COLOR } from "../Variable/variable";
+import {
+  SET_TITLE,
+  SET_TEXT,
+  SET_LABEL,
+  COLOR,
+  CLEAR,
+  PRIORITY,
+} from "../Variable/variable";
 function noteReducer(state, { type, payload }) {
   switch (type) {
     case SET_TITLE:
@@ -20,6 +27,19 @@ function noteReducer(state, { type, payload }) {
       return {
         ...state,
         color: payload,
+      };
+    case PRIORITY:
+      return {
+        ...state,
+        priority: payload,
+      };
+    case CLEAR:
+      return {
+        ...state,
+        color: "",
+        noteText: "",
+        noteTitle: "",
+        tags: "",
       };
 
     default:

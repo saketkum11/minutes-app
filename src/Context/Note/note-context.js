@@ -9,17 +9,30 @@ import { useAuth } from "../Auth/Auth-Context";
 import axios from "axios";
 import noteReducer from "../../Reducer/noteReducer";
 import { v4 as uuid } from "uuid";
+import dayjs from "dayjs";
 
 const noteContext = createContext();
 const useNote = () => useContext(noteContext);
 
 const NoteProvider = ({ children }) => {
+  const Date = () => dayjs().format("YYYY-MM-DD");
   const { tokenStorage } = useAuth();
   const [userNotes, setUserNotes] = useState([]);
   const [noteFooter, setNoteFooter] = useState({
     colorPalette: false,
     label: false,
+    priority: false,
   });
+  const colors = [
+    "bg-pink-9",
+    "bg-purple-9",
+    "bg-green-9",
+    "bg-blue-9",
+    "bg-pink-5",
+    "bg-red-5",
+  ];
+
+  const notePriority = ["high", "medium", "low"];
 
   const initialNotes = {
     _id: uuid(),
@@ -27,6 +40,8 @@ const NoteProvider = ({ children }) => {
     noteTitle: "",
     noteText: "",
     color: "",
+    priority: "",
+    createdAt: Date(),
   };
   const [noteState, noteDispatch] = useReducer(noteReducer, initialNotes);
   const getNotes = async () => {
@@ -76,9 +91,20 @@ const NoteProvider = ({ children }) => {
       console.error(error);
     }
   };
-  const moveToTrash = () => {};
-
-  console.log("userstate", userNotes);
+  {
+    /*const updatedNote = (note,id) =>{
+    try {
+      const response = await axios.post(`/api/notes/${note._id}`,{
+        headers: {
+          authorization: tokenStorage,
+        },
+      })
+      setUserNotes(response.data.notes)
+    } catch (error) {
+      console.error(error)
+    }
+  }*/
+  }
 
   return (
     <noteContext.Provider
@@ -91,6 +117,8 @@ const NoteProvider = ({ children }) => {
         noteState,
         userNotes,
         deleteNotes,
+        colors,
+        notePriority,
       }}
     >
       {children}

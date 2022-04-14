@@ -1,23 +1,27 @@
 import { useNote } from "../../Context/Note/note-context";
 import { useState } from "react";
-import { SET_TITLE, SET_LABEL, COLOR } from "../../Variable/variable";
+import {
+  SET_TITLE,
+  SET_LABEL,
+  COLOR,
+  CLEAR,
+  PRIORITY,
+} from "../../Variable/variable";
 import "../../Style/cardNote.css";
 import Typographycal from "../Typographcal/Typographycal";
 function CardNote() {
-  const { createNotes, noteFooter, setNoteFooter, noteDispatch, noteState } =
-    useNote();
-
-  const colors = [
-    "bg-pink-9",
-    "bg-purple-9",
-    "bg-green-9",
-    "bg-blue-9",
-    "bg-pink-5",
-    "bg-red-5",
-  ];
+  const {
+    createNotes,
+    noteFooter,
+    setNoteFooter,
+    noteDispatch,
+    notePriority,
+    noteState,
+    colors,
+  } = useNote();
 
   const [newLabel, setNewLabel] = useState("");
-  console.log("notedata", noteState, "newlabel", newLabel);
+
   return (
     <>
       {/* card component */}
@@ -43,11 +47,18 @@ function CardNote() {
               onClick={() =>
                 setNoteFooter({ ...noteFooter, label: !noteFooter.label })
               }
-              className="text-color-5 cursor rounded-full border-none  outline-none text-color-0 pd-x-3 pd-y-2"
+              className="text-color-5 cursor rounded-full border-none  outline-none  pd-x-3 pd-y-2"
             >
               <i className="fa-solid fa-tag"></i>
             </button>
-
+            <button
+              onClick={() =>
+                setNoteFooter({ ...noteFooter, priority: !noteFooter.priority })
+              }
+              className="text-color-9 cursor rounded-full border-none  outline-none  pd-x-3 pd-y-2"
+            >
+              <i class="fa-solid fa-angle-up"></i>
+            </button>
             <button
               onClick={() => {
                 setNoteFooter({
@@ -55,7 +66,7 @@ function CardNote() {
                   colorPalette: !noteFooter.colorPalette,
                 });
               }}
-              className="text-color-5 cursor rounded-full border-none  outline-none text-color-0 pd-x-3 pd-y-2"
+              className="text-color-9 cursor rounded-full border-none  outline-none  pd-x-3 pd-y-2"
             >
               <i className="fa-solid fa-palette"></i>
             </button>
@@ -68,8 +79,13 @@ function CardNote() {
             >
               Create
             </button>
-            <button className="bg-pink-9 rounded-s border-none cursor outline-none text-color-0 pd-x-6 pd-y-3">
-              Close
+            <button
+              onClick={() => {
+                noteDispatch({ type: CLEAR });
+              }}
+              className="bg-pink-9 rounded-s border-none cursor outline-none text-color-0 pd-x-6 pd-y-3"
+            >
+              clear
             </button>
           </div>
         </div>
@@ -114,6 +130,34 @@ function CardNote() {
             >
               Label
             </button>
+          </div>
+        ) : (
+          ""
+        )}
+        {noteFooter.priority ? (
+          <div className="bg-black-1 flex  pd-2 wt-20 flex-column ">
+            {notePriority.map((priority) => {
+              return (
+                <>
+                  <label htmlFor={priority}>
+                    <input
+                      key={priority}
+                      id={priority}
+                      type="radio"
+                      name="priority"
+                      className="wt-80 m-auto m-y-2 cursor"
+                      onClick={() => {
+                        noteDispatch({
+                          type: PRIORITY,
+                          payload: priority,
+                        });
+                      }}
+                    />
+                    {priority}
+                  </label>
+                </>
+              );
+            })}
           </div>
         ) : (
           ""
