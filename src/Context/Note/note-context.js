@@ -1,6 +1,13 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  useReducer,
+} from "react";
 import { useAuth } from "../Auth/Auth-Context";
 import axios from "axios";
+import noteReducer from "../../Reducer/noteReducer";
 const noteContext = createContext();
 const useNote = () => useContext(noteContext);
 
@@ -12,6 +19,13 @@ const NoteProvider = ({ children }) => {
     label: false,
   });
 
+  const initialNotes = {
+    label: [],
+    noteTitle: "",
+    noteText: "",
+    color: "",
+  };
+  const [noteState, noteDispatch] = useReducer(noteReducer, initialNotes);
   const getNotes = async () => {
     try {
       const response = await axios.get("/api/notes", {
@@ -30,7 +44,7 @@ const NoteProvider = ({ children }) => {
     getNotes();
   }, []);
 
-  const initateNotes = async ({ notes }) => {
+  const createNotes = async ({ notes }) => {
     try {
       const response = await axios.post(
         "/api/notes",
@@ -52,7 +66,14 @@ const NoteProvider = ({ children }) => {
 
   return (
     <noteContext.Provider
-      value={{ getNotes, initateNotes, noteFooter, setNoteFooter }}
+      value={{
+        getNotes,
+        createNotes,
+        noteFooter,
+        setNoteFooter,
+        noteDispatch,
+        noteState,
+      }}
     >
       {children}
     </noteContext.Provider>
