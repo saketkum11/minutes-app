@@ -78,7 +78,7 @@ const NoteProvider = ({ children }) => {
       console.error(error);
     }
   };
-  const deleteNotes = async (note, id) => {
+  const deleteNotes = async (note) => {
     try {
       const response = await axios.delete(`/api/notes/${note._id}`, {
         headers: {
@@ -91,20 +91,24 @@ const NoteProvider = ({ children }) => {
       console.error(error);
     }
   };
-  {
-    /*const updatedNote = (note,id) =>{
+
+  const updatedNote = async (note) => {
     try {
-      const response = await axios.post(`/api/notes/${note._id}`,{
-        headers: {
-          authorization: tokenStorage,
-        },
-      })
-      setUserNotes(response.data.notes)
+      const response = await axios.post(
+        `/api/notes/${note._id}`,
+        { note },
+        {
+          headers: {
+            authorization: tokenStorage,
+          },
+        }
+      );
+      setUserNotes(response.data.notes);
+      console.log("response from updated value", response.data.notes);
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
-  }*/
-  }
+  };
 
   return (
     <noteContext.Provider
@@ -119,6 +123,8 @@ const NoteProvider = ({ children }) => {
         deleteNotes,
         colors,
         notePriority,
+        updatedNote,
+        setUserNotes,
       }}
     >
       {children}

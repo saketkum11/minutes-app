@@ -15,13 +15,15 @@ function NotesPanel() {
     notePriority,
     noteDispatch,
     noteState,
+    updatedNote,
+    setUserNotes,
   } = useNote();
   const [newCard, setNewCard] = useState({
     colorPalette: false,
     label: false,
     priority: false,
   });
-  console.log("new state", noteState);
+
   return (
     <>
       {userNotes &&
@@ -55,12 +57,13 @@ function NotesPanel() {
                     </button>
                     <button
                       title="color"
-                      onClick={() =>
+                      onClick={() => {
                         setNewCard({
                           ...newCard,
                           colorPalette: !newCard.colorPalette,
-                        })
-                      }
+                        });
+                        updatedNote(note);
+                      }}
                       className="text-color-5 cursor rounded-full border-none  outline-none text-color-0 pd-x-3 pd-y-2"
                     >
                       <i className="fa-solid fa-palette text-color-9"></i>
@@ -69,7 +72,10 @@ function NotesPanel() {
                     <button
                       title="delete"
                       onClick={() => {
-                        deleteNotes(note, _id);
+                        {
+                          /* deleteNotes(note, _id);*/
+                        }
+                        updatedNote(note);
                       }}
                       className="text-color-9 cursor rounded-full border-none  outline-none text-color-0 pd-x-3 pd-y-2"
                     >
@@ -95,7 +101,6 @@ function NotesPanel() {
                             key={allColor}
                             onClick={() => {
                               noteDispatch({ type: COLOR, payload: allColor });
-                              updatedNote(userNotes);
                             }}
                             className={`h-fixed-4  cursor wt-fixed-4  ${allColor} rounded-full border-none`}
                           ></button>

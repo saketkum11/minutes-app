@@ -1,7 +1,7 @@
 import { useNote } from "../../Context/Note/note-context";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import { useState } from "react";
+
 import { SET_TEXT } from "../../Variable/variable";
 function Typographycal() {
   const { noteDispatch, noteState } = useNote();
