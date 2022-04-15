@@ -18,11 +18,13 @@ const NoteProvider = ({ children }) => {
   const Date = () => dayjs().format("YYYY-MM-DD");
   const { tokenStorage } = useAuth();
   const [userNotes, setUserNotes] = useState([]);
+
   const [noteFooter, setNoteFooter] = useState({
     colorPalette: false,
     label: false,
     priority: false,
   });
+
   const colors = [
     "bg-pink-9",
     "bg-purple-9",
