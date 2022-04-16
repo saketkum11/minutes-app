@@ -13,7 +13,7 @@ function Tags() {
           onClick={() => {
             setLabelFlag((flag) => !flag);
           }}
-          className="text-color-5 cursor rounded-full border-none  outline-none  pd-x-3 pd-y-2"
+          className="text-color-9 cursor rounded-full border-none  outline-none  pd-x-3 pd-y-2"
         >
           <i className="fa-solid fa-tag"></i>
         </button>

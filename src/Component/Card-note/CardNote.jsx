@@ -7,7 +7,7 @@ import Tags from "../Tags/Tags";
 import Priority from "../Priority/Priority";
 import { SET_TITLE } from "../../Variable/variable";
 function CardNote() {
-  const { createNotes, initialNotes, noteDispatch, noteState } = useNote();
+  const { createNotes, noteDispatch, noteState } = useNote();
 
   return (
     <>
