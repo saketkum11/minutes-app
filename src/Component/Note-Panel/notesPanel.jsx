@@ -1,6 +1,7 @@
 import { useNote } from "../../Context/Note/note-context";
 import { useState } from "react";
 import { COLOR, PRIORITY } from "../../Variable/variable";
+import EditorModal from "../EditorModal/EditorModal";
 function NotesPanel() {
   const {
     userNotes,
@@ -16,6 +17,7 @@ function NotesPanel() {
     newColor: false,
     newTag: false,
     newPriority: false,
+    modal: false,
   });
   const [updatedTag, setUpdatedTag] = useState("");
 
@@ -45,11 +47,20 @@ function NotesPanel() {
                 <div className=" flex items-start pd-4">{priority}</div>
                 <div className="flex  justify-even  items-start m-y-3 ">
                   <button
+                    onClick={() => {
+                      setNewFlag({ ...newFlag, modal: !newFlag.modal });
+                    }}
                     title="rewrite"
                     className="text-color-5 cursor rounded-full border-none  outline-none text-color-9 pd-x-3 pd-y-2 "
                   >
                     <i class="fa-solid fa-pen-to-square"></i>
                   </button>
+                  {/*EditorModal*/}
+                  {newFlag.modal ? (
+                    <EditorModal key={_id} note={note}></EditorModal>
+                  ) : (
+                    ""
+                  )}
                   <button
                     title="label"
                     onClick={() => {
