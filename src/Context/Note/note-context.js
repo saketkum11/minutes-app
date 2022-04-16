@@ -19,12 +19,6 @@ const NoteProvider = ({ children }) => {
   const { tokenStorage } = useAuth();
   const [userNotes, setUserNotes] = useState([]);
 
-  const [noteFooter, setNoteFooter] = useState({
-    colorPalette: false,
-    label: false,
-    priority: false,
-  });
-
   const colors = [
     "bg-pink-9",
     "bg-purple-9",
@@ -46,20 +40,20 @@ const NoteProvider = ({ children }) => {
     createdAt: Date(),
   };
   const [noteState, noteDispatch] = useReducer(noteReducer, initialNotes);
-  const getNotes = async () => {
-    try {
-      const response = await axios.get("/api/notes", {
-        headers: {
-          authorization: tokenStorage,
-        },
-      });
-      setUserNotes(response.data.notes);
-    } catch (error) {
-      console.error(error);
-    }
-  };
 
   useEffect(() => {
+    const getNotes = async () => {
+      try {
+        const response = await axios.get("/api/notes", {
+          headers: {
+            authorization: tokenStorage,
+          },
+        });
+        setUserNotes(response.data.notes);
+      } catch (error) {
+        console.error(error);
+      }
+    };
     getNotes();
   }, []);
 
@@ -75,7 +69,6 @@ const NoteProvider = ({ children }) => {
         }
       );
       setUserNotes(response.data.notes);
-      console.log("response from create notes", response.data.notes);
     } catch (error) {
       console.error(error);
     }
@@ -88,7 +81,6 @@ const NoteProvider = ({ children }) => {
         },
       });
       setUserNotes(response.data.notes);
-      console.log("response from create notes", response.data.notes);
     } catch (error) {
       console.error(error);
     }
@@ -111,14 +103,13 @@ const NoteProvider = ({ children }) => {
       console.error(error);
     }
   };
-
+  console.log("userstate", userNotes);
+  console.log("notestate", noteState);
   return (
     <noteContext.Provider
       value={{
-        getNotes,
+        initialNotes,
         createNotes,
-        noteFooter,
-        setNoteFooter,
         noteDispatch,
         noteState,
         userNotes,

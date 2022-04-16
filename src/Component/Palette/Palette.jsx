@@ -1,25 +1,16 @@
-import React from "react";
 import { useNote } from "../../Context/Note/note-context";
 import { COLOR } from "../../Variable/variable";
+import { useState } from "react";
 function Palette() {
-  const {
-    createNotes,
-    noteFooter,
-    setNoteFooter,
-    noteDispatch,
-    notePriority,
-    noteState,
-    colors,
-  } = useNote();
+  const { createNotes, noteDispatch, notePriority, noteState, colors } =
+    useNote();
+  const [colorFlag, setColorFlag] = useState(false);
   return (
     <>
       <div>
         <button
           onClick={() => {
-            setNoteFooter({
-              ...noteFooter,
-              colorPalette: !noteFooter.colorPalette,
-            });
+            setColorFlag((flag) => !flag);
           }}
           className="text-color-9 cursor rounded-full border-none  outline-none  pd-x-3 pd-y-2"
         >
@@ -28,7 +19,7 @@ function Palette() {
       </div>
       {/*colorPalette*/}
 
-      {noteFooter.colorPalette && (
+      {colorFlag ? (
         <div className="bg-black-1 flex wt-30 ">
           <div className="flex justify-even pd-y-2">
             {colors.map((allColor) => {
@@ -46,6 +37,8 @@ function Palette() {
             })}
           </div>
         </div>
+      ) : (
+        ""
       )}
     </>
   );

@@ -35,15 +35,10 @@ function noteReducer(state, { type, payload }) {
       };
     case CLEAR:
       return {
-        ...state,
-        color: "",
-        noteText: "",
-        noteTitle: "",
-        tags: "",
+        payload,
       };
-
     default:
-      return { ...state };
+      return state;
   }
 }
 export default noteReducer;
