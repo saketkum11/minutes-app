@@ -4,3 +4,5 @@ export const COLOR = "COLOR";
 export const SET_TEXT = "SET_TEXT";
 export const CLEAR = "CLEAR";
 export const PRIORITY = "PRIORITY";
+export const SORT = "SORT";
+export const FILTER = "FILTER";

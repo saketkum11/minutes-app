@@ -4,9 +4,11 @@ import "./index.css";
 import App from "./App";
 import { makeServer } from "./server";
 import { BrowserRouter } from "react-router-dom";
-import { AuthProvider } from "./Context/Auth/Auth-Context";
+
 import { NoteProvider } from "./Context/Note/note-context";
-import { FilterProvider } from "./Context/Filter/Filter";
+import { FilterProvider } from "./Context/Filter-Context/Filter-Context";
+import { AuthProvider } from "./Context/Auth-Context/Auth-Context";
+
 // Call make Server
 makeServer();
 

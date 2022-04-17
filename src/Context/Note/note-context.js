@@ -5,17 +5,17 @@ import React, {
   useEffect,
   useReducer,
 } from "react";
-import { useAuth } from "../Auth/Auth-Context";
+import { useAuth } from "../Auth-Context/Auth-Context";
 import axios from "axios";
 import noteReducer from "../../Reducer/noteReducer";
 import { v4 as uuid } from "uuid";
-import dayjs from "dayjs";
 
 const noteContext = createContext();
 const useNote = () => useContext(noteContext);
 
 const NoteProvider = ({ children }) => {
-  const Date = () => dayjs().format("YYYY-MM-DD");
+  const moment = require("moment");
+  const date = moment().startOf("hour").fromNow();
   const { tokenStorage } = useAuth();
   const [userNotes, setUserNotes] = useState([]);
   const [newFlag, setNewFlag] = useState({
@@ -71,7 +71,7 @@ const NoteProvider = ({ children }) => {
     noteText: "",
     color: "",
     priority: "",
-    createdAt: Date(),
+    createdAt: date,
   };
   const [noteState, noteDispatch] = useReducer(noteReducer, initialNotes);
 

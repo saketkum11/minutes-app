@@ -2,6 +2,7 @@ import { useNote } from "../../Context/Note/note-context";
 import { useState } from "react";
 import { COLOR, PRIORITY } from "../../Variable/variable";
 import EditorModal from "../EditorModal/EditorModal";
+import Moment from "react-moment";
 function NotesPanel() {
   const {
     userNotes,
@@ -14,13 +15,12 @@ function NotesPanel() {
     newFlag,
     setNewFlag,
   } = useNote();
-
   const [updatedTag, setUpdatedTag] = useState("");
 
   return (
     <>
       {userNotes.map((note) => {
-        const { _id, noteText, color, noteTitle, tags, createdAt, priority } =
+        const { _id, noteText, color, noteTitle, createdAt, tags, priority } =
           note;
         return (
           <>
@@ -38,7 +38,7 @@ function NotesPanel() {
                   {noteText}
                 </div>
                 <div className="flex items-start pd-4">{tags}</div>
-                <div className=" flex items-start pd-4">Date {createdAt}</div>
+                <div className=" flex items-start pd-4 ">{createdAt}</div>
                 <div className=" flex items-start pd-4">{priority}</div>
                 <div className="flex  justify-even  items-start m-y-3 ">
                   <button

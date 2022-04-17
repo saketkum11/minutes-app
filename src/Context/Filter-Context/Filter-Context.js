@@ -1,9 +1,11 @@
-import React, { createContext, useContext, useReducer } from "react";
+import React, { createContext, useContext, useReducer, useState } from "react";
+import filterReducer from "../../Reducer/FilterReducer";
 
 const filterContext = createContext();
 const useFilter = () => useContext(filterContext);
 
 const FilterProvider = ({ children }) => {
+  const [filterFlag, setFilterFlag] = useState(false);
   const initialFilter = {
     tags: [],
     priority: [],
@@ -15,7 +17,15 @@ const FilterProvider = ({ children }) => {
   );
 
   return (
-    <filterContext.Provider value={{ filterDispatch, initialFilter }}>
+    <filterContext.Provider
+      value={{
+        filterDispatch,
+        initialFilter,
+        filterState,
+        setFilterFlag,
+        filterFlag,
+      }}
+    >
       {children}
     </filterContext.Provider>
   );
