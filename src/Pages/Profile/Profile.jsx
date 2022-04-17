@@ -1,9 +1,10 @@
 import React from "react";
+import Navbar from "../../Component/Sidenav/Navbar";
 
 function Profile() {
   return (
     <>
-      <h1>This is Profile Page.</h1>
+      <Navbar></Navbar>
     </>
   );
 }

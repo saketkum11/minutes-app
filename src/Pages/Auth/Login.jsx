@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
+
 import { useAuth } from "../../Context/Auth/Auth-Context";
 
 function Login() {
-  const navigate = useNavigate();
-  const location = useLocation();
   const { auth, loginTextHandler, loginHandler } = useAuth();
   const [userCredentials, setUserCredentials] = useState({
     email: "",
@@ -18,7 +17,6 @@ function Login() {
           onSubmit={(e) => {
             e.preventDefault();
             loginHandler(userCredentials);
-            navigate(location.state?.from?.pathname);
           }}
           action=""
           className="bg-black-1 text-color-9 justify-even flex flex-column  m-t-9 pd-11"
@@ -67,19 +65,21 @@ function Login() {
           </button>
 
           <button
-            onClick={(e) => {}}
+            onClick={(e) => {
+              loginHandler("adarshbalika@gmail.com", "adarshBalika123");
+            }}
             className="bg-black-0 rounded-xs outline-none pd-2 cursor"
           >
             Login as Guest{" "}
           </button>
         </form>
         <footer className="bg-black-4 ">
-          <a
-            href=""
+          <NavLink
+            to="/signup"
             className="text-dec rounded-xs text-color-0  pd-x-3 pd-y-2"
           >
             Create account
-          </a>
+          </NavLink>
         </footer>
       </div>
     </>
