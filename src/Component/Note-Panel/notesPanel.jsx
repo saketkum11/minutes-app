@@ -3,6 +3,7 @@ import { useState } from "react";
 import { COLOR, PRIORITY } from "../../Variable/variable";
 import EditorModal from "../EditorModal/EditorModal";
 import Moment from "react-moment";
+import { useFilter } from "../../Context/Filter-Context/Filter-Context";
 function NotesPanel() {
   const {
     userNotes,
@@ -15,11 +16,12 @@ function NotesPanel() {
     newFlag,
     setNewFlag,
   } = useNote();
+  const { filteredData } = useFilter();
   const [updatedTag, setUpdatedTag] = useState("");
 
   return (
     <>
-      {userNotes.map((note) => {
+      {filteredData.map((note) => {
         const { _id, noteText, color, noteTitle, createdAt, tags, priority } =
           note;
         return (
@@ -38,7 +40,9 @@ function NotesPanel() {
                   {noteText}
                 </div>
                 <div className="flex items-start pd-4">{tags}</div>
-                <div className=" flex items-start pd-4 ">{createdAt}</div>
+                <div className=" flex items-start pd-4 ">
+                  <Moment fromNow></Moment>
+                </div>
                 <div className=" flex items-start pd-4">{priority}</div>
                 <div className="flex  justify-even  items-start m-y-3 ">
                   <button

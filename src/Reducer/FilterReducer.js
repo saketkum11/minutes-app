@@ -3,10 +3,18 @@ import { FILTER, SORT } from "../Variable/variable";
 function filterReducer(state, { type, payload }) {
   switch (type) {
     case SORT:
-      return;
+      return {
+        ...state,
+        sortBy: [state.sortBy, payload],
+      };
+    case FILTER:
+      return {
+        ...state,
+        priority: [...state.priority, payload],
+      };
 
     default:
-      break;
+      return state;
   }
 }
 export default filterReducer;

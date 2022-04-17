@@ -65,7 +65,6 @@ const NoteProvider = ({ children }) => {
   const notePriority = ["high", "medium", "low"];
 
   const initialNotes = {
-    _id: uuid(),
     tags: [],
     noteTitle: "",
     noteText: "",
@@ -132,13 +131,11 @@ const NoteProvider = ({ children }) => {
         }
       );
       setUserNotes(response.data.notes);
-      console.log("response from updated value", response.data.notes);
     } catch (error) {
       console.error(error);
     }
   };
-  console.log("userstate", userNotes);
-  console.log("notestate", noteState);
+
   return (
     <noteContext.Provider
       value={{

@@ -18,7 +18,7 @@ function Filter() {
                 name="Filter"
                 id="High"
                 onChange={(e) => {
-                  filterDispatch({ type: "SORT", payload: e.target.value });
+                  filterDispatch({ type: "FILTER", payload: e.target.value });
                 }}
               />
               High
@@ -30,7 +30,7 @@ function Filter() {
                 name="Filter"
                 id="Medium"
                 onChange={(e) => {
-                  filterDispatch({ type: "SORT", payload: e.target.value });
+                  filterDispatch({ type: "FILTER", payload: e.target.value });
                 }}
               />
               Medium
@@ -42,7 +42,7 @@ function Filter() {
                 name="Filter"
                 id="Low"
                 onChange={(e) => {
-                  filterDispatch({ type: "SORT", payload: e.target.value });
+                  filterDispatch({ type: "FILTER", payload: e.target.value });
                 }}
               />
               Low
