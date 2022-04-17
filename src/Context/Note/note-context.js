@@ -18,7 +18,41 @@ const NoteProvider = ({ children }) => {
   const Date = () => dayjs().format("YYYY-MM-DD");
   const { tokenStorage } = useAuth();
   const [userNotes, setUserNotes] = useState([]);
+  const [newFlag, setNewFlag] = useState({
+    newColor: false,
+    newTag: false,
+    newPriority: false,
+    modal: false,
+  });
+  const modules = {
+    toolbar: [
+      [{ header: "1" }, { header: "2" }, { font: [] }],
+      [{ size: [] }],
+      ["bold", "italic", "underline", "strike", "blockquote"],
+      [
+        { list: "ordered" },
+        { list: "bullet" },
+        { indent: "-1" },
+        { indent: "+1" },
+      ],
 
+      ["clean"],
+    ],
+  };
+  const formats = [
+    "header",
+    "font",
+    "size",
+    "bold",
+    "italic",
+    "underline",
+    "strike",
+    "blockquote",
+    "list",
+    "bullet",
+    "indent",
+    "link",
+  ];
   const colors = [
     "bg-pink-9",
     "bg-purple-9",
@@ -118,6 +152,10 @@ const NoteProvider = ({ children }) => {
         notePriority,
         updatedNote,
         setUserNotes,
+        modules,
+        colors,
+        newFlag,
+        setNewFlag,
       }}
     >
       {children}

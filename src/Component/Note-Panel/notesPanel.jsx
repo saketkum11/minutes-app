@@ -11,17 +11,12 @@ function NotesPanel() {
     noteDispatch,
     noteState,
     updatedNote,
+    newFlag,
+    setNewFlag,
   } = useNote();
 
-  const [newFlag, setNewFlag] = useState({
-    newColor: false,
-    newTag: false,
-    newPriority: false,
-    modal: false,
-  });
   const [updatedTag, setUpdatedTag] = useState("");
 
-  console.log("notestate", noteState);
   return (
     <>
       {userNotes.map((note) => {
@@ -57,7 +52,11 @@ function NotesPanel() {
                   </button>
                   {/*EditorModal*/}
                   {newFlag.modal ? (
-                    <EditorModal key={_id} note={note}></EditorModal>
+                    <EditorModal
+                      key={_id}
+                      note={note}
+                      setNewFlag={setNewFlag}
+                    ></EditorModal>
                   ) : (
                     ""
                   )}
