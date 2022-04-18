@@ -1,18 +1,29 @@
-import { FILTER, SORT } from "../Variable/variable";
+import { HIGH, LOW, MEDIUM, SORT, CLEAR } from "../Variable/variable";
 
 function filterReducer(state, { type, payload }) {
   switch (type) {
+    case HIGH:
+      return {
+        ...state,
+        high: !state.high,
+      };
+    case LOW:
+      return {
+        ...state,
+        low: !state.low,
+      };
+    case MEDIUM:
+      return {
+        ...state,
+        medium: !state.medium,
+      };
     case SORT:
       return {
         ...state,
-        sortBy: [state.sortBy, payload],
+        sortBy: payload,
       };
-    case FILTER:
-      return {
-        ...state,
-        priority: [...state.priority, payload],
-      };
-
+    case CLEAR:
+      return;
     default:
       return state;
   }

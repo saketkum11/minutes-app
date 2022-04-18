@@ -17,8 +17,8 @@ function Filter() {
                 type="checkbox"
                 name="Filter"
                 id="High"
-                onChange={(e) => {
-                  filterDispatch({ type: "FILTER", payload: e.target.value });
+                onChange={() => {
+                  filterDispatch({ type: "HIGH" });
                 }}
               />
               High
@@ -29,8 +29,8 @@ function Filter() {
                 type="checkbox"
                 name="Filter"
                 id="Medium"
-                onChange={(e) => {
-                  filterDispatch({ type: "FILTER", payload: e.target.value });
+                onChange={() => {
+                  filterDispatch({ type: "MEDIUM" });
                 }}
               />
               Medium
@@ -41,8 +41,8 @@ function Filter() {
                 type="checkbox"
                 name="Filter"
                 id="Low"
-                onChange={(e) => {
-                  filterDispatch({ type: "FILTER", payload: e.target.value });
+                onChange={() => {
+                  filterDispatch({ type: "LOW" });
                 }}
               />
               Low
@@ -59,6 +59,7 @@ function Filter() {
                 type="radio"
                 name="Sort"
                 id="Older"
+                value="older"
                 onChange={(e) => {
                   filterDispatch({ type: "SORT", payload: e.target.value });
                 }}
@@ -71,6 +72,7 @@ function Filter() {
                 type="radio"
                 name="Sort"
                 id="Latest"
+                value="latest"
                 onChange={(e) => {
                   filterDispatch({ type: "SORT", payload: e.target.value });
                 }}

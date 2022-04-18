@@ -8,43 +8,56 @@ const useFilter = () => useContext(filterContext);
 const FilterProvider = ({ children }) => {
   const { userNotes } = useNote();
   const [filterFlag, setFilterFlag] = useState(false);
-  {
-    /* const sortNote = (noteData) => {
-    if (noteData === "older") {
-      return noteData.sort((a, b) => a.createdAT - b.createdAt);
-    }
-    if (noteData === "latest") {
-      return noteData.sort((a, b) => b.createdAT - a.createdAT);
-    }
-    return noteData;
-  };*/
-  }
-  const filterData = (sortedData) => {
-    if (sortedData.priority === "low") {
-      return sortedData.filter((priority) => priority.priority === "low");
-    }
-    if (sortedData.priority === "medium") {
-      return sortedData.filter((priority) => priority.priority === "medium");
-    }
-    if (sortedData.priority === "high") {
-      return sortedData.filter((priority) => priority.priority === "high");
-    }
-    return sortedData;
-  };
 
-  const filteredData = filterData(userNotes);
-  console.log("filteredData", filteredData);
   const initialFilter = {
-    tags: [],
-    priority: [],
-    sortBy: [],
+    high: false,
+    low: false,
+    medium: false,
+    sortBy: null,
   };
   const [filterState, filterDispatch] = useReducer(
     filterReducer,
     initialFilter
   );
+  const filterData = (noteData, filterData) => {
+    let getHigh = [];
+    let getMedium = [];
+    let getLow = [];
+    if (
+      filterData.high === false &&
+      filterData.medium === false &&
+      filterData.low === false
+    ) {
+      return noteData;
+    }
+    if (filterData.high === true) {
+      getHigh = noteData.filter((data) => data.priority === "high");
+    }
+    if (filterData.medium === true) {
+      getMedium = noteData.filter((data) => data.priority === "medium");
+    }
+    if (filterData.low === true) {
+      getLow = noteData.filter((data) => data.priority === "low");
+    }
+    return [...getHigh, ...getMedium, ...getLow];
+  };
+
+  const sortData = (filterData, filterState) => {
+    if (filterState.sortBY === "older") {
+      return filterData.sort((a, b) => a.createdAt - b.createdAt);
+    }
+    if (filterState.sortBY === "latest") {
+      return filterData.sort((a, b) => b.createdAt - a.createdAt);
+    }
+    return filterData;
+  };
+
+  const filteredData = filterData(userNotes, filterState);
+  const sortedData = sortData(filteredData, filterState);
+
   console.log("filterState", filterState);
   console.log("userNotes", userNotes);
+  console.log("userNotes", sortedData);
   return (
     <filterContext.Provider
       value={{
