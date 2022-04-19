@@ -49,7 +49,7 @@ const FilterProvider = ({ children }) => {
     if (filterState.sortBY === "latest") {
       return filterData.sort((a, b) => b.createdAt - a.createdAt);
     }
-    return filterData;
+    return;
   };
 
   const filteredData = filterData(userNotes, filterState);
@@ -57,7 +57,8 @@ const FilterProvider = ({ children }) => {
 
   console.log("filterState", filterState);
   console.log("userNotes", userNotes);
-  console.log("userNotes", sortedData);
+  console.log("filteredData", filteredData);
+  console.log("sortedData", sortedData);
   return (
     <filterContext.Provider
       value={{
