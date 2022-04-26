@@ -9,6 +9,7 @@ function Login() {
     password: "",
   });
 
+  const { email, password } = userCredentials;
   return (
     <>
       <div className=" m-auto wt-30 flex flex-column justify-even">
@@ -32,6 +33,7 @@ function Login() {
             }}
             id="email"
             type="email"
+            value={email}
             className=" pd-4   text-s rounded-xs "
             placeholder="Email Id"
           />
@@ -52,12 +54,12 @@ function Login() {
             }}
             type="password"
             id="password"
+            value={password}
             className="pd-4 text-s rounded-xs outline-none "
             placeholder="Password"
           />
           <button
             type="submit"
-            onClick={loginTextHandler}
             className="bg-purple-7 m-y-8 rounded-xs border-none outline-none text-s cursor text-color-0 pd-3 text-light"
           >
             Login

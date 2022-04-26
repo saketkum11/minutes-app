@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+
 import { useAuth } from "../../Context/Auth-Context/Auth-Context";
 
 function Signup() {
-  const navigate = useNavigate();
   const { signupHandler } = useAuth();
   const [data, setData] = useState({
     firstName: "",
@@ -11,6 +10,7 @@ function Signup() {
     email: "",
     password: "",
   });
+  const { email, password, firstName, lastName } = data;
 
   return (
     <>
@@ -19,57 +19,67 @@ function Signup() {
           onSubmit={(e) => {
             e.preventDefault();
             signupHandler(data);
-            navigate("/login");
           }}
-          action=""
           className="bg-black-1 text-color-9 justify-even flex flex-column  m-t-9 pd-11"
         >
           <label
-            htmlFor=""
+            htmlFor="firstName"
             className="flex items-start pd-y-5 pd-x-3 text-xm text-sm text-light"
           >
             FirstName
           </label>
           <input
             type="text"
+            id="firstName"
             className=" pd-4 text-s rounded-xs "
+            required
+            value={firstName}
             onChange={(e) => setData({ ...data, firstName: e.target.value })}
             placeholder="eg: saket"
           />
           <label
-            htmlFor=""
+            htmlFor="lastName"
             className="flex items-start text-xm pd-y-5 pd-x-3 text-sm text-light"
           >
             LastName
           </label>
           <input
             type="text"
+            id="lastName"
             onChange={(e) => setData({ ...data, lastName: e.target.value })}
             className="pd-4 text-s rounded-xs outline-none "
+            required
+            value={lastName}
             placeholder="eg: kumar"
           />
           <label
-            htmlFor=""
+            htmlFor="email"
             className="flex items-start text-xm pd-y-5 pd-x-3 text-sm  text-light"
           >
             Email
           </label>
           <input
             type="email"
+            id="email"
             onChange={(e) => setData({ ...data, email: e.target.value })}
             className="pd-4 text-s rounded-xs outline-none "
+            required
+            value={email}
             placeholder="eg: kumarsaket@gmail.com"
           />
           <label
-            htmlFor=""
+            htmlFor="password"
             className="flex items-start text-xm pd-y-5 pd-x-3 text-sm  text-light"
           >
             Password
           </label>
           <input
             type="password"
+            id="password"
             onChange={(e) => setData({ ...data, password: e.target.value })}
             className="pd-4 text-s rounded-xs outline-none "
+            required
+            value={password}
             placeholder="eg: asjh$dhdf12"
           />
           <button

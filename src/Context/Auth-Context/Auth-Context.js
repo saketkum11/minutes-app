@@ -1,20 +1,16 @@
 import React, { useContext, createContext, useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
 const authContext = createContext();
 const useAuth = () => useContext(authContext);
 
 const AuthProvider = ({ children }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const tokenStorage = localStorage.getItem("token");
+  const [isLoggedIn, setIsLoggedIn] = useState({
+    tokenData: localStorage.getItem("token"),
+    isAuth: localStorage.getItem("token") ? true : false,
+  });
 
-  const isAuth = tokenStorage ? true : false;
-  const navigate = useNavigate();
-
-  const loginTextHandler = () => {
-    setIsLoggedIn((login) => !login);
-  };
+  const { tokenData, isAuth } = isLoggedIn;
 
   const signupHandler = async ({ firstName, lastName, email, password }) => {
     try {
@@ -26,20 +22,25 @@ const AuthProvider = ({ children }) => {
       });
       // saving the encodedToken in the localStorage
       localStorage.setItem("token", response.data.encodedToken);
+      console.log("response from signup", response);
     } catch (error) {
       console.error(error);
     }
   };
   const loginHandler = async ({ email, password }) => {
-    try {
-      const response = await axios.post("/api/auth/login", {
-        email: email,
-        password: password,
-      });
-      localStorage.setItem("token", response.data.encodedToken);
-      navigate("/notes");
-    } catch (error) {
-      console.error(error);
+    if (isAuth) {
+      try {
+        const response = await axios.post("/api/auth/login", {
+          email: email,
+          password: password,
+        });
+        localStorage.setItem("token", response.data.encodedToken);
+        console.log("response from login", response);
+      } catch (error) {
+        console.error(error);
+      }
+    } else {
+      console.log("signup");
     }
   };
 
@@ -48,10 +49,6 @@ const AuthProvider = ({ children }) => {
       value={{
         signupHandler,
         loginHandler,
-        loginTextHandler,
-        isLoggedIn,
-        tokenStorage,
-        isAuth,
       }}
     >
       {children}
